@@ -1,15 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mobile_app/states/test_state.dart';
+import 'package:mobile_app/models/stub_test_data.dart';
 
 import './pages/home.dart';
 import './pages/test.dart';
 import './pages/result.dart';
 
-void main() {
+void main() async {
+  var jsonData = await json.decode(testData);
+
   runApp(ChangeNotifierProvider(
-    create: (_) => TestState(''),
+    create: (_) => TestState(jsonData),
     child: App(),
   ));
 }

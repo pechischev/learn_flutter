@@ -5,35 +5,18 @@ class TestModel {
   List<Question> questions = [];
   Map<int, String> _answers = {};
 
-  // TODO: add reader from json
-  TestModel.stub() {
-    title = 'Video Games';
-    questions.add(Question(
-        id: 1,
-        title: 'What year was the game Team Fortress 2 released?',
-        answers: ['2005', '2007', '2009', '2010'],
-        correctAnswer: '2007'));
-    questions.add(Question(
-        id: 2,
-        title:
-            'The Mann Co. Store from Team Fortress 2 has the slogan "We hire mercenaries and get in fights".',
-        answers: ['True', 'False'],
-        correctAnswer: 'False'));
-    questions.add(Question(
-        id: 3,
-        title: 'Who is Sonic\'s sidekick?',
-        answers: ['Shadow', 'Knuckles', 'Amy', 'Tails'],
-        correctAnswer: 'Tails'));
-    questions.add(Question(
-        id: 4,
-        title: 'What was the name of the cancelled sequel of Team Fortress?',
-        answers: [
-          'Team Fortress 2: Brotherhood of Arms',
-          'Team Fortress 2: Desert Mercenaries',
-          'Team Fortress 2: Operation Gear Grinder',
-          'Team Fortress 2: Return to Classic'
-        ],
-        correctAnswer: 'Team Fortress 2: Brotherhood of Arms'));
+  TestModel.fromJson(dataJson) {
+    title = dataJson['title'];
+    var questionsJson = dataJson['questions'] as List;
+
+    for (var questionJson in questionsJson) {
+      questions.add(Question(
+          id: questionJson['id'] as int,
+          title: questionJson['title'] as String,
+          answers: questionJson['answers'].map((answer) => answer).toList(),
+          correctAnswer: questionJson['correct_answer'] as String
+      ));
+    }
   }
 
   setAnswer(int questionId, String answer) {

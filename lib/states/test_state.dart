@@ -8,8 +8,8 @@ class TestState extends ChangeNotifier {
 
   int _currentQuestionIndex = 0;
 
-  TestState(String jsonPath) {
-    test = TestModel.stub();
+  TestState(Object jsonData) {
+    test = TestModel.fromJson(jsonData);
   }
 
   setAnswer(String answer) {

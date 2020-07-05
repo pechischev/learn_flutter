@@ -37,7 +37,7 @@ class Test extends StatelessWidget {
                     },
                   ),
                   RaisedButton(
-                    child: Text('Confirm'),
+                    child: Text(test.isFinishQuestion ? 'Confirm' : 'Continue'),
                     onPressed: () {
                       if (test.isFinishQuestion) {
                         Navigator.pushReplacementNamed(context, '/result');
@@ -75,7 +75,7 @@ class _TestAnswersWidgetState extends State<TestAnswersWidget> {
         leading: Radio(
           value: answer,
           groupValue: test.getSelectedQuestionAnswer(),
-          onChanged: (String value) {
+          onChanged: (value) {
             test.setAnswer(value);
           },
         ),
