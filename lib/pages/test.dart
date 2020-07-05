@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
+import 'package:provider/provider.dart';
+import 'package:mobile_app/states/test_state.dart';
+
 class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var test = Provider.of<TestState>(context);
+    var question = test.currentQuestion;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -12,7 +18,7 @@ class Test extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                child: Text('Question', style: TextStyle(fontSize: 26)),
+                child: Text(question.title, style: TextStyle(fontSize: 26)),
               ),
               Container(
                 child: TestAnswersWidget(),
@@ -23,13 +29,21 @@ class Test extends StatelessWidget {
                   FlatButton(
                     child: Text('Back'),
                     onPressed: () {
-                      Navigator.pop(context);
+                      if (test.isFirstQuestion) {
+                        Navigator.pop(context);
+                        return;
+                      }
+                      test.prevQuestion();
                     },
                   ),
                   RaisedButton(
                     child: Text('Confirm'),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/result');
+                      if (test.isFinishQuestion) {
+                        Navigator.pushReplacementNamed(context, '/result');
+                        return;
+                      }
+                      test.nextQuestion();
                     },
                   ),
                 ],
@@ -51,36 +65,21 @@ class TestAnswersWidget extends StatefulWidget {
 }
 
 class _TestAnswersWidgetState extends State<TestAnswersWidget> {
-  num currentAnswer;
-
   Widget build(BuildContext context) {
+    var test = Provider.of<TestState>(context);
+    var question = test.currentQuestion;
+
     return Column(
-      children: [
-        ListTile(
-          title: const Text('Lafayette'),
-          leading: Radio(
-            value: 1,
-            groupValue: currentAnswer,
-            onChanged: (num value) {
-              setState(() {
-                currentAnswer = value;
-              });
-            },
-          ),
+      children: question.answers.map((answer) => new ListTile(
+        title: Text(answer),
+        leading: Radio(
+          value: answer,
+          groupValue: test.getSelectedQuestionAnswer(),
+          onChanged: (String value) {
+            test.setAnswer(value);
+          },
         ),
-        ListTile(
-          title: const Text('Thomas Jefferson'),
-          leading: Radio(
-            value: 2,
-            groupValue: currentAnswer,
-            onChanged: (num value) {
-              setState(() {
-                currentAnswer = value;
-              });
-            },
-          ),
-        ),
-      ]
+      )).toList()
     );
   }
 }

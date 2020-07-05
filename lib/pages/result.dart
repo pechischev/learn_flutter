@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile_app/states/test_state.dart';
 
 class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var state = Provider.of<TestState>(context);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -17,8 +21,8 @@ class Result extends StatelessWidget {
             Container(
               child: Column(
                 children: <Widget>[
-                  Text('7 / 10', style: TextStyle(fontSize: 32)),
-                  Text('success', style: TextStyle(fontSize: 32)),
+                  Text('${state.test.getResult()} / ${state.test.questions.length}', style: TextStyle(fontSize: 32)),
+                  Text(state.test.getResult() / state.test.questions.length > 0.6 ? 'success' : 'fail', style: TextStyle(fontSize: 32)),
                 ],
               ),
             ),

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
+
+import 'package:mobile_app/states/test_state.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var test = Provider.of<TestState>(context);
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -11,7 +16,7 @@ class Home extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text('Test title', style: TextStyle(fontSize: 32)),
+              Text(test.title, style: TextStyle(fontSize: 32)),
               SizedBox(height: 150 ),
               RaisedButton(
                 onPressed: () {

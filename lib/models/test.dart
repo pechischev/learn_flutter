@@ -1,12 +1,12 @@
 import 'question.dart';
 
-class Test {
+class TestModel {
   String title;
   List<Question> questions = [];
   Map<int, String> _answers = {};
 
   // TODO: add reader from json
-  Test.stub() {
+  TestModel.stub() {
     title = 'Video Games';
     questions.add(Question(
         id: 1,
@@ -36,8 +36,12 @@ class Test {
         correctAnswer: 'Team Fortress 2: Brotherhood of Arms'));
   }
 
-  setAnswer(int answerId, String answer) {
-    _answers[answerId] = answer;
+  setAnswer(int questionId, String answer) {
+    _answers[questionId] = answer;
+  }
+
+  String getQuestionAnswer(int questionId) {
+    return _answers[questionId];
   }
 
   int getResult() {
