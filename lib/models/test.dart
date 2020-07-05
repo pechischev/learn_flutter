@@ -3,10 +3,9 @@ import 'question.dart';
 class Test {
   String title;
   List<Question> questions = [];
-  Map<int, String> answers = {};
+  Map<int, String> _answers = {};
 
   // TODO: add reader from json
-
   Test.stub() {
     title = 'Video Games';
     questions.add(Question(
@@ -38,13 +37,13 @@ class Test {
   }
 
   setAnswer(int answerId, String answer) {
-    answers[answerId] = answer;
+    _answers[answerId] = answer;
   }
 
   int getResult() {
     bool isCorrectAnswer(Question question) =>
-        answers.containsKey(question.id) &&
-        answers[question.id] == question.correctAnswer;
+        _answers.containsKey(question.id) &&
+        _answers[question.id] == question.correctAnswer;
 
     return questions.fold(
         0,
