@@ -55,8 +55,6 @@ class Test extends StatelessWidget {
   }
 }
 
-enum SingingCharacter { lafayette, jefferson }
-
 class TestAnswersWidget extends StatefulWidget {
   TestAnswersWidget({Key key}) : super(key: key);
 
