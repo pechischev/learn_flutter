@@ -1,16 +1,17 @@
-# mobile_app
+# Learn Flutter
 
-For summer practic
+Приложение для прохождения тестов.
 
-## Getting Started
+## Возможности
 
-This project is a starting point for a Flutter application.
+* Есть кнопка для начала тестирования.
+* Для каждого вопроса предусмотрено 4 варианта ответа.
+* После выбора ответа отображается следующий вопрос. Так до конца теста.
+* В конце теста отображается результат:
+	* сколько правильных
+	* статус прохождения - правильных ответов > 60% - прошел, меньше - не прошел
 
-A few resources to get you started if this is your first Flutter project:
+## Используемые технологии:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Dart](https://dart.dev/guides)
+- [Flutter](https://flutter.dev/docs)
