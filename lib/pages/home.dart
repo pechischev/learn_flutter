@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 
-import 'package:mobile_app/states/test_state.dart';
+import '../states/test_state.dart';
 
 class Home extends StatelessWidget {
   @override

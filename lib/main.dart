@@ -11,7 +11,7 @@ import './pages/test.dart';
 import './pages/result.dart';
 
 void main() async {
-  var jsonData = await json.decode(testData);
+  var jsonData = await json.decode(testDataJson);
 
   runApp(ChangeNotifierProvider(
     create: (_) => TestState(jsonData),
